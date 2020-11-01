@@ -46,6 +46,7 @@
 span#userInfo {
     float: right;
     margin: 10px;
+    max-width: 130px;
 }
 .lastsavelink .lastsavelinkdel {
     float: right;
@@ -64,10 +65,50 @@ span#userInfo {
     margin: 10px;
     font-weight: 900;
 }
+
+#logout {
+    float: right;
+    margin: 10px;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="door-open" class="svg-inline--fa fa-door-open fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M624 448h-80V113.45C544 86.19 522.47 64 496 64H384v64h96v384h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM312.24 1.01l-192 49.74C105.99 54.44 96 67.7 96 82.92V448H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h336V33.18c0-21.58-19.56-37.41-39.76-32.17zM264 288c-13.25 0-24-14.33-24-32s10.75-32 24-32 24 14.33 24 32-10.75 32-24 32z"></path></svg>');
+}
+    p#savelinksLast {
+        clear: both;
+    }
+    span#status {
+        float: left;
+    }
+    #status.process {
+        /* ✓↻✖⭘⚠ */
+        -webkit-animation:spin 600ms linear infinite;
+        -moz-animation:spin 600ms linear infinite;
+        animation:spin 600ms linear infinite;
+    }
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+    #status.stopped:before {
+        content: '⭘';
+    }
+    #status.process:before {
+        content: '↻';
+    }
+    #status.error:before {
+        content: '✖';
+    }
+    #status.warning:before {
+        content: '⚠';
+    }
+    #status.done:before {
+        content: '✓';
+    }
 </style>
 <div id="mainPopup">
-<p><input id="savelinks" type="button" value="Quick save"><span id="userInfo"></span></p>
-<p id="savelinksLast"></p>
+<p><input id="savelinks" type="button" value="Quick save"><span id="userInfo"><span id="userLogin"></span><span id="logout"></span></span></p>
+    <span id="status" class="stopped"></span>
+    <p id="savelinksLast"></p>
 <hr>
 <p>
     <select id="groupName">

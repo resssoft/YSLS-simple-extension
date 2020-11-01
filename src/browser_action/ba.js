@@ -34,6 +34,12 @@ document.addEventListener("DOMContentLoaded", ready);
 		})
 	};
 
+	  document.getElementById("logout").onclick = function() {
+		  $('#mainPopup').hide()
+		  $('#loginPopup').show()
+
+	  };
+
   	var token = await getToken()
   	if (token == '' || token == undefined || token == null ) {
   		$('#mainPopup').hide()
@@ -315,6 +321,11 @@ document.addEventListener("DOMContentLoaded", ready);
 	chrome.storage.sync.set({'user': user});
   }
 
+	async function removeToken(token) {
+		console.log('saved token: ' + token);
+		chrome.storage.sync.remove('token');
+	}
+
   async function setUserInfo() {
   		var userInfo = await getUserInfo()
   		if (userInfo == '' || userInfo == undefined || userInfo == null ) {
@@ -335,13 +346,16 @@ document.addEventListener("DOMContentLoaded", ready);
 			  	userInfo = userData.email
 			    console.log(userData);
 			    saveUser(userInfo);
+			    $('#userInfo #userLogin').text('User: ' + userInfo)
 			  });
 			})
   		}
-  		$('#userInfo').text('User: ' + userInfo)
+  		$('#userInfo #userLogin').text('User: ' + userInfo)
   }
 
    async function saveLinkTo(paramsCollection) {
+	$('#status').text("")
+	$('#status').attr('class', 'process');
    	var item = {
 	  title: '',
 	  type: '',
@@ -376,7 +390,20 @@ document.addEventListener("DOMContentLoaded", ready);
 		    'Authorization': 'Bearer ' + token
 		  },
 		  body: JSON.stringify(item)
-		}).then(r => r.text()).then(result => {
+		}).then(r => {
+			console.log("response");
+			console.log(r.status);
+			if (r.status >= 200 && r.status <= 300) {
+				$('#status').attr('class', 'done');
+			}
+			if (r.status >= 400 && r.status <= 600) {
+				$('#status').attr('class', 'error');
+				$('#status').text(" code: " + r.status)
+			}
+			return r.text()
+		}).then(result => {
+			console.log("result");
+			console.log(result);
 		    // Result now contains the response text, do what you want...
 		})
 	});
