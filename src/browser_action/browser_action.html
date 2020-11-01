@@ -1,0 +1,110 @@
+<!doctype html>
+<meta charset="UTF-8">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="ba.js"></script>
+<style type="text/css">
+	#mainPopup {
+		width: 250px;
+		font-family: Helvetica, Ubuntu, Arial, sans-serif;
+	}
+	.lastsavelink:hover {
+    background-color: #f7ffd7;
+    cursor: pointer;
+    border-left: 2px solid #ff9818;
+}
+.lastsavelink {
+    padding: 5px;
+    border-bottom: 1px solid #e6e4e4;
+    border-left: 2px solid #ff981800;
+}
+#mainPopup input#newGroup {
+    width: 70px;
+}
+#mainPopup input[type='button']:hover {
+    background: #f7ffd7;
+}
+#mainPopup input[type='button'] {
+    padding: 2px 6px;
+    margin: 5px 0;
+    background: #ffffff;
+    border: 1px #999 solid;
+    cursor: pointer;
+}
+#ErrorPopup {
+    color: red;
+    margin: 10px;
+    font-weight: 900;
+}
+#loginPopup input[type='text'], #loginPopup input[type='password'] {
+    margin: 6px 6px;
+    width: 150px;
+}
+#loginPopup .login-input-text {
+    margin: 6px 6px;
+    width: 70px;
+}
+span#userInfo {
+    float: right;
+    margin: 10px;
+}
+.lastsavelink .lastsavelinkdel {
+    float: right;
+    color: #fd4141;
+    font-weight: 900;
+    opacity: 0;
+}
+.lastsavelink:hover .lastsavelinkdel {
+    opacity: 0.7;
+}
+.lastsavelink:hover .lastsavelinkdel:hover {
+    opacity: 1;
+}
+#messagePopup {
+    color: #01884a;
+    margin: 10px;
+    font-weight: 900;
+}
+</style>
+<div id="mainPopup">
+<p><input id="savelinks" type="button" value="Quick save"><span id="userInfo"></span></p>
+<p id="savelinksLast"></p>
+<hr>
+<p>
+    <select id="groupName">
+      <option value="">Group</option>
+    </select>
+     or 
+    <input type="text" id="newGroup">
+</p>
+<p>
+    <select id="assignmentName">
+      <option value="webPage">Assignment</option>
+        <option value="music">music</option>
+        <option value="musicAndVideo">musicAndVideo</option>
+        <option value="video">video</option>
+        <option value="picture">picture</option>
+        <option value="webPage">webPage</option>
+    </select>
+</p>
+<p>
+    <input type="checkbox" id="flag_favorite" /> <span class="main-input-title"> Favorite </span><br>
+    <input type="checkbox" id="flag_cache" /> <span class="main-input-title"> Cache content </span><br>
+    <input type="checkbox" id="flag_processed" checked="checked" /> <span class="main-input-title"> Service processed </span><br>
+    <input type="checkbox" id="flag_preview" checked="checked" /> <span class="main-input-title"> Add preview </span>
+</p>
+
+<input id="savelinksWithGroup" type="button" value="save">
+</div>
+
+
+<div id="loginPopup">
+<p>
+    <span class="login-input-title">Please, log in: </span><br>
+    <span class="login-input-text">Login: </span><input type="text" id="username">
+    <br>
+    <span class="login-input-text">Password: </span><input type="password" id="password">
+</p>
+<input id="login" type="button" value="login">
+</div>
+<div id="messagePopup"></div>
+<div id="ErrorPopup"></div>
